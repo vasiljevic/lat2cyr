@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<script src="https://cdn.jsdelivr.net/gh/ivebe/CyrLatConverter/cyrlatconverter.min.js"></script> 
+<body>
+
+<h1>Latinica u ćirilicu</h1>
+
+Latinica:<br>
+<textarea id="areaLat" name="w3review" rows="10" cols="80">
+</textarea><br>
+
+<button type="button" id="trBtn">U ćirilicu</button><br>
+
+
+<textarea id="areaCyr" name="w3review" rows="10" cols="80">
+</textarea>
+
+<script>
+
+function copyToClipboard(str) {
+  const el = document.createElement('textarea');
+  el.value = str;
+  el.setAttribute('readonly', '');
+  el.style.position = 'absolute';
+  el.style.left = '-9999px';
+  document.body.appendChild(el);
+  el.select();
+  document.execCommand('copy');
+  document.body.removeChild(el);
+};
+
+texmap = {'\\v{s}':'š','\\v{S}':'Š', '\\v{c}':'č','\\v{C}':'Č', '\\v{z}':'z','\\v{Z}':'Ž','\\\'{c}':'ć','\\\'{C}':'Ć'}
+document.getElementById("trBtn").addEventListener("click", transliterate);
+console.log("adfa")
+var CyrLat = new CyrLatConverter('body').init();
+
+function transliterate() {
+  console.log("adfa")
+  l = document.getElementById("areaLat").value;
+  
+  
+  l1 = l.replace(/\\v\{s\}|\\v\{S\}|\\v\{c\}|\\v\{C\}|\\v\{z\}|\\v\{Z\}|\\\'\{c\}|\\'\{C\}/g, m => texmap[m]);
+  c = CyrLat.getL2C(l1);
+  
+ 
+  
+  document.getElementById("areaCyr").value = c
+  
+  copyToClipboard(c)
+}
+</script>
+</body>
+</html>
