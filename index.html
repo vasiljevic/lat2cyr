@@ -42,7 +42,7 @@ function transliterate() {
   l1 = l.replace(/\\v\{s\}|\\v\{S\}|\\v\{c\}|\\v\{C\}|\\v\{z\}|\\v\{Z\}|\\\'\{c\}|\\'\{C\}/g, m => texmap[m]);
   c = CyrLat.getL2C(l1);
   
-  c1 = c.replace(/\\\p{Letter}+/gu, m => CyrLat.getC2L(c))
+  c1 = c.replace(/\\\p{Letter}+/gu, m => CyrLat.getC2L(m))
   
   document.getElementById("areaCyr").value = c1
   
