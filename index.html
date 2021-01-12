@@ -13,6 +13,8 @@ Latinica:<br>
 </textarea>
 
 <script>
+CyrLatIgnoreList['AI'] = 'AI';
+  
 var CyrLat = new CyrLatConverter('body').init();
 
 document.getElementById("trBtn").addEventListener("click", transliterate);
