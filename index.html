@@ -22,19 +22,18 @@ var CyrLat = new CyrLatConverter('body').init();
 document.getElementById("trBtn").addEventListener("click", transliterate);
   
 function transliterate() {
-  texmap = {'\\v{s}':'š','\\v{S}':'Š', '\\v{c}':'č','\\v{C}':'Č', '\\v{z}':'ž','\\v{Z}':'Ž','\\\'{c}':'ć','\\\'{C}':'Ć'}
-  l = document.getElementById("areaLat").value;
-  l1 = l.replace(/\\v\{s\}|\\v\{S\}|\\v\{c\}|\\v\{C\}|\\v\{z\}|\\v\{Z\}|\\\'\{c\}|\\'\{C\}/g, m => texmap[m]);
-  c = CyrLat.getL2C(l1);
-  c1 = c.replace(/\\\p{Letter}+/gu, m => CyrLat.getC2L(m));
-  
-  ac = document.getElementById("areaCyr");
-  ac.value = c1;
-  ac.select();
-  document.execCommand('copy');
-  document.getSelection().removeAllRanges();
+    texmap = {'\\v{s}':'š','\\v{S}':'Š', '\\v{c}':'č','\\v{C}':'Č', '\\v{z}':'ž','\\v{Z}':'Ž','\\\'{c}':'ć','\\\'{C}':'Ć'}
+    l = document.getElementById("areaLat").value;
+    l1 = l.replace(/\\v\{s\}|\\v\{S\}|\\v\{c\}|\\v\{C\}|\\v\{z\}|\\v\{Z\}|\\\'\{c\}|\\'\{C\}/g, m => texmap[m]);
+    c = CyrLat.getL2C(l1);
+    c1 = c.replace(/\\\p{Letter}+/gu, m => CyrLat.getC2L(m));
+
+    ac = document.getElementById("areaCyr");
+    ac.value = c1;
+    ac.select();
+    document.execCommand('copy');
+    document.getSelection().removeAllRanges();
 }
-  
 </script>
 </body>
 </html>
