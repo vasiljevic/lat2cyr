@@ -27,21 +27,11 @@ function transliterate() {
   l1 = l.replace(/\\v\{s\}|\\v\{S\}|\\v\{c\}|\\v\{C\}|\\v\{z\}|\\v\{Z\}|\\\'\{c\}|\\'\{C\}/g, m => texmap[m]);
   c = CyrLat.getL2C(l1);
   c1 = c.replace(/\\\p{Letter}+/gu, m => CyrLat.getC2L(m))
-  document.getElementById("areaCyr").value = c1
-  copyToClipboard(c)
-}
   
-function copyToClipboard(str) {
-  const el = document.createElement('textarea');
-  el.value = str;
-  el.setAttribute('readonly', '');
-  el.style.position = 'absolute';
-  el.style.left = '-9999px';
-  document.body.appendChild(el);
-  el.select();
-  document.execCommand('copy');
-  document.body.removeChild(el);
-};
+  ac = document.getElementById("areaCyr");
+  ac.value = c1
+  ac.execCommand('copy');
+}
   
 </script>
 </body>
