@@ -6,10 +6,10 @@
 <h1>Latinica u ćirilicu</h1>
 
 Latinica:<br>
-<textarea id="areaLat" name="w3review" rows="10" cols="80">
+<textarea id="areaLat" name="w3review" rows="15" cols="100">
 </textarea><br>
 <button type="button" id="trBtn">U ćirilicu</button><br>
-<textarea id="areaCyr" name="w3review" rows="10" cols="80">
+<textarea id="areaCyr" name="w3review" rows="15" cols="100">
 </textarea>
 
 <script>
@@ -26,11 +26,11 @@ function transliterate() {
   l = document.getElementById("areaLat").value;
   l1 = l.replace(/\\v\{s\}|\\v\{S\}|\\v\{c\}|\\v\{C\}|\\v\{z\}|\\v\{Z\}|\\\'\{c\}|\\'\{C\}/g, m => texmap[m]);
   c = CyrLat.getL2C(l1);
-  c1 = c.replace(/\\\p{Letter}+/gu, m => CyrLat.getC2L(m))
+  c1 = c.replace(/\\\p{Letter}+/gu, m => CyrLat.getC2L(m));
   
   ac = document.getElementById("areaCyr");
-  ac.value = c1
-  ac.select()
+  ac.value = c1;
+  ac.select();
   document.execCommand('copy');
   document.getSelection().removeAllRanges();
 }
