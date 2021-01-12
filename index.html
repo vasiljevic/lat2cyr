@@ -30,7 +30,9 @@ function transliterate() {
   
   ac = document.getElementById("areaCyr");
   ac.value = c1
-  ac.execCommand('copy');
+  ac.select()
+  document.execCommand('copy');
+  document.getSelection().removeAllRanges();
 }
   
 </script>
