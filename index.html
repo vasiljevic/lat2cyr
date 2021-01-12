@@ -8,15 +8,25 @@
 Latinica:<br>
 <textarea id="areaLat" name="w3review" rows="10" cols="80">
 </textarea><br>
-
 <button type="button" id="trBtn">U ćirilicu</button><br>
-
-
 <textarea id="areaCyr" name="w3review" rows="10" cols="80">
 </textarea>
 
 <script>
+var CyrLat = new CyrLatConverter('body').init();
 
+document.getElementById("trBtn").addEventListener("click", transliterate);
+  
+function transliterate() {
+  texmap = {'\\v{s}':'š','\\v{S}':'Š', '\\v{c}':'č','\\v{C}':'Č', '\\v{z}':'ž','\\v{Z}':'Ž','\\\'{c}':'ć','\\\'{C}':'Ć'}
+  l = document.getElementById("areaLat").value;
+  l1 = l.replace(/\\v\{s\}|\\v\{S\}|\\v\{c\}|\\v\{C\}|\\v\{z\}|\\v\{Z\}|\\\'\{c\}|\\'\{C\}/g, m => texmap[m]);
+  c = CyrLat.getL2C(l1);
+  c1 = c.replace(/\\\p{Letter}+/gu, m => CyrLat.getC2L(m))
+  document.getElementById("areaCyr").value = c1
+  copyToClipboard(c)
+}
+  
 function copyToClipboard(str) {
   const el = document.createElement('textarea');
   el.value = str;
@@ -28,26 +38,7 @@ function copyToClipboard(str) {
   document.execCommand('copy');
   document.body.removeChild(el);
 };
-
-texmap = {'\\v{s}':'š','\\v{S}':'Š', '\\v{c}':'č','\\v{C}':'Č', '\\v{z}':'z','\\v{Z}':'Ž','\\\'{c}':'ć','\\\'{C}':'Ć'}
-document.getElementById("trBtn").addEventListener("click", transliterate);
-console.log("adfa")
-var CyrLat = new CyrLatConverter('body').init();
-
-function transliterate() {
-  console.log("adfa")
-  l = document.getElementById("areaLat").value;
   
-  
-  l1 = l.replace(/\\v\{s\}|\\v\{S\}|\\v\{c\}|\\v\{C\}|\\v\{z\}|\\v\{Z\}|\\\'\{c\}|\\'\{C\}/g, m => texmap[m]);
-  c = CyrLat.getL2C(l1);
-  
-  c1 = c.replace(/\\\p{Letter}+/gu, m => CyrLat.getC2L(m))
-  
-  document.getElementById("areaCyr").value = c1
-  
-  copyToClipboard(c)
-}
 </script>
 </body>
 </html>
