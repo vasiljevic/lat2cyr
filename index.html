@@ -13,7 +13,9 @@ Latinica:<br>
 </textarea>
 
 <script>
-CyrLatIgnoreList['ai'] = '';
+KeepWords = ['ai', 'python'];
+
+for(const kw of KeepWords) CyrLatIgnoreList['kw'] = '';
   
 var CyrLat = new CyrLatConverter('body').init();
 
